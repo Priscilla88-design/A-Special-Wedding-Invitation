@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 3. Primitive Definition
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      // User email from runtime metadata
+      return isSignedIn() && (
+        request.auth.token.email == "priscillaawuku88@gmail.com" &&
+        request.auth.token.email_verified == true
+      );
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // 2. Validation Blueprint (The "Anti-Update-Gap")
+    function isValidRsvp(data) {
+      return data.keys().hasAll(['name', 'email', 'attendance', 'guests', 'createdAt']) &&
+             data.keys().size() <= 6 && // Optional 'dietary' included
+             data.name is string && data.name.size() > 0 && data.name.size() <= 200 &&
+             data.email is string && data.email.size() > 0 && data.email.size() <= 200 &&
+             data.attendance in ['attending', 'declined'] &&
+             data.guests is int && data.guests >= 1 && data.guests <= 20 &&
+             (data.get('dietary', '') is string && data.get('dietary', '').size() <= 1000) &&
+             data.createdAt == request.time;
+    }
+
+    match /rsvps/{rsvpId} {
+      // Allow creation for anyone (public RSVP)
+      // Note: We don't mandate isSignedIn() for public RSVPs if the couple expects guests
+      // who might not have Google accounts to respond, but it's safer with isSignedIn().
+      // For this app, let's keep it public create but validated.
+      allow create: if isValidId(rsvpId) && isValidRsvp(incoming());
+
+      // Only Admin can read/list/update/delete RSVPs
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

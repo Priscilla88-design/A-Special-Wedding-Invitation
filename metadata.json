@@ -1,0 +1,6 @@
+{
+  "name": "Eleanor & Sebastian's Wedding",
+  "description": "An elegant, modern wedding invitation and RSVP portal with a romantic, timeless design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
