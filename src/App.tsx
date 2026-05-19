@@ -830,6 +830,7 @@ const Footer = () => (
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] uppercase tracking-widest font-bold">
         <p>© 2028 SJ Wedding. All Rights Reserved.</p>
         <div className="flex gap-6">
+           <button onClick={() => auth.signOut()} className="hover:text-gold uppercase">Sign Out</button>
            <a href="#" onClick={() => loginWithGoogle()} className="hover:text-gold">Admin Portal</a>
            <span>Built with love for our forever.</span>
         </div>
@@ -838,8 +839,72 @@ const Footer = () => (
   </footer>
 );
 
+const LoginScreen = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    setLoading(true);
+    try {
+      await loginWithGoogle();
+    } catch (error) {
+      console.error("Login failed", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[200] bg-merlot flex items-center justify-center p-6 text-ivory">
+      <div className="parchment-card p-12 md:p-20 text-center rounded-sm max-w-md w-full">
+        <span className="text-luxury mb-4 block">Private Event</span>
+        <h2 className="text-4xl font-serif italic text-merlot mb-10">Welcome</h2>
+        <p className="text-slate italic mb-12">Please sign in to access Sophie & John's wedding website.</p>
+        
+        <button 
+          onClick={handleLogin}
+          disabled={loading}
+          className="w-full bg-merlot text-ivory py-4 uppercase tracking-[0.4em] text-xs font-bold hover:bg-gold transition-all flex items-center justify-center gap-3 disabled:opacity-50"
+        >
+          {loading ? (
+            <span className="animate-pulse">Signing in...</span>
+          ) : (
+            <>
+              <Lock className="w-4 h-4" /> Sign in with Google
+            </>
+          )}
+        </button>
+        <p className="mt-8 text-[10px] uppercase tracking-widest text-slate/40">Authorized Guests Only</p>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
+  const [user, setUser] = useState<any>(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [showInvite, setShowInvite] = useState(false);
+
+  useEffect(() => {
+    return onAuthStateChanged(auth, (u) => {
+      setUser(u);
+      setAuthLoading(false);
+    });
+  }, []);
+
+  if (authLoading) {
+    return (
+      <div className="fixed inset-0 bg-merlot flex items-center justify-center">
+        <div className="flex flex-col items-center gap-6">
+          <Heart className="text-gold w-12 h-12 animate-pulse" fill="currentColor" />
+          <p className="text-ivory font-serif italic tracking-widest">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginScreen />;
+  }
 
   return (
     <div className="selection:bg-gold selection:text-white overflow-x-hidden min-h-screen bg-merlot">
