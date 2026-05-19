@@ -6,8 +6,8 @@
   --font-sans: "Montserrat", sans-serif;
   --font-display: "Playfair Display", serif;
 
-  --color-merlot: #4A0404;
-  --color-merlot-light: #722F37;
+  --color-merlot: #831515;
+  --color-merlot-light: #A32929;
   --color-gold: #B08D57;
   --color-ivory: #FDFCFB;
   --color-parchment: #F5F2ED;
@@ -43,7 +43,7 @@
 }
 
 .text-luxury {
-  @apply tracking-[0.3em] uppercase text-[10px] font-semibold text-gold;
+  @apply tracking-[0.3em] uppercase text-[10px] font-semibold text-merlot;
 }
 
 .wax-seal {

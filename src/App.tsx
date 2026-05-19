@@ -380,7 +380,7 @@ const Attire = () => (
   <section id="attire" className="py-32 px-6 bg-merlot-light/20 relative overflow-hidden">
      <div className="max-w-4xl mx-auto text-center relative z-10">
         <span className="text-luxury mb-4 block">Dress Code</span>
-        <h2 className="text-5xl md:text-7xl italic font-serif mb-12">The Attire</h2>
+        <h2 className="text-5xl md:text-7xl italic font-serif mb-12 text-merlot">The Attire</h2>
         <div className="parchment-card p-12 md:p-20 rounded-sm">
           <h3 className="text-3xl font-serif italic text-merlot underline decoration-gold/50 underline-offset-8 mb-8">Black Tie Mandatory</h3>
           <p className="text-slate mb-12 italic text-lg leading-relaxed">
@@ -400,7 +400,7 @@ const Attire = () => (
           <div className="mt-12 p-8 bg-ivory rounded-sm border border-sand/30">
             <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-merlot mb-6">Color Inspiration</p>
             <div className="flex justify-center gap-4 flex-wrap">
-              {['#4A0404', '#722F37', '#B08D57', '#2D2D2D', '#FDFCFB'].map(c => (
+              {['#831515', '#A32929', '#B08D57', '#2D2D2D', '#FDFCFB'].map(c => (
                 <div key={c} className="w-10 h-10 rounded-full border-2 border-white shadow-md" style={{ backgroundColor: c }} />
               ))}
             </div>
@@ -426,15 +426,15 @@ const TravelAccommodation = () => (
            <h3 className="text-3xl font-serif italic text-merlot mb-6">Where to Stay</h3>
            <div className="space-y-8">
               <div>
-                <h4 className="font-bold text-lg mb-2">The Beekman Hotel</h4>
+                <h4 className="font-bold text-lg mb-2 text-merlot">The Beekman Hotel</h4>
                 <p className="text-slate/70 text-sm mb-4">Our wedding venue. We have a block of rooms reserved under the "Sophie & John Wedding."</p>
-                <a href="#" className="text-gold text-[10px] uppercase font-bold tracking-widest border-b border-gold pb-1">Book Room Block</a>
+                <a href="#" className="text-merlot text-[10px] uppercase font-bold tracking-widest border-b border-merlot pb-1">Book Room Block</a>
               </div>
               <div className="h-px bg-sand/50" />
               <div>
-                <h4 className="font-bold text-lg mb-2">The Arlo NoMad</h4>
+                <h4 className="font-bold text-lg mb-2 text-merlot">The Arlo NoMad</h4>
                 <p className="text-slate/70 text-sm mb-4">A boutique option just a short walk away for those looking for a different vibe.</p>
-                <a href="#" className="text-gold text-[10px] uppercase font-bold tracking-widest border-b border-gold pb-1">Visit Website</a>
+                <a href="#" className="text-merlot text-[10px] uppercase font-bold tracking-widest border-b border-merlot pb-1">Visit Website</a>
               </div>
            </div>
         </div>
@@ -443,17 +443,17 @@ const TravelAccommodation = () => (
            <h3 className="text-3xl font-serif italic text-merlot mb-6">Getting There</h3>
            <div className="space-y-8">
               <div>
-                <h4 className="font-bold text-lg mb-2"><Plane className="inline w-4 h-4 mr-2" /> By Air</h4>
+                <h4 className="font-bold text-lg mb-2 text-merlot"><Plane className="inline w-4 h-4 mr-2" /> By Air</h4>
                 <p className="text-slate/70 text-sm">John F. Kennedy (JFK) or LaGuardia (LGA) are the closest airports. Newark (EWR) is also an option but slightly further away.</p>
               </div>
               <div className="h-px bg-sand/50" />
               <div>
-                <h4 className="font-bold text-lg mb-2"><Car className="inline w-4 h-4 mr-2" /> Transportation</h4>
+                <h4 className="font-bold text-lg mb-2 text-merlot"><Car className="inline w-4 h-4 mr-2" /> Transportation</h4>
                 <p className="text-slate/70 text-sm">We recommend using ride-share services (Uber/Lyft) or the iconic New York yellow cabs. Parking at the venue is limited.</p>
               </div>
               <div className="h-px bg-sand/50" />
               <div id="transportation">
-                <h4 className="font-bold text-lg mb-2">Shuttle Service</h4>
+                <h4 className="font-bold text-lg mb-2 text-merlot">Shuttle Service</h4>
                 <p className="text-slate/70 text-sm">A private shuttle will be provided between The Arlo and The Beekman starting at 2:00 PM on the day of the wedding.</p>
               </div>
            </div>
@@ -790,14 +790,19 @@ const AdminDashboard = () => {
 
 const Contacts = () => (
    <section id="contacts" className="py-24 bg-merlot border-t border-white/10 text-center">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto px-6">
         <span className="text-luxury mb-4 block">Get in touch</span>
         <h2 className="text-4xl font-serif italic mb-12">Contact Us</h2>
-        <div className="grid md:grid-cols-2 gap-12 text-gold">
+        <div className="grid md:grid-cols-3 gap-12 text-gold">
            <div className="space-y-2">
               <Phone className="w-5 h-5 mx-auto mb-2" />
-              <p className="text-[10px] uppercase tracking-widest opacity-60">The Groom</p>
+              <p className="text-[10px] uppercase tracking-widest opacity-60">Chief Bridesmaid</p>
               <p className="text-xl font-serif italic text-ivory">+1 (555) 0123</p>
+           </div>
+           <div className="space-y-2">
+              <Phone className="w-5 h-5 mx-auto mb-2" />
+              <p className="text-[10px] uppercase tracking-widest opacity-60">Best Man</p>
+              <p className="text-xl font-serif italic text-ivory">+1 (555) 0987</p>
            </div>
            <div className="space-y-2">
               <Mail className="w-5 h-5 mx-auto mb-2" />
