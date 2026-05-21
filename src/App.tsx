@@ -380,7 +380,7 @@ const Attire = () => (
   <section id="attire" className="py-32 px-6 bg-merlot-light/20 relative overflow-hidden">
      <div className="max-w-4xl mx-auto text-center relative z-10">
         <span className="text-luxury mb-4 block">Dress Code</span>
-        <h2 className="text-5xl md:text-7xl italic font-serif mb-12 text-merlot">The Attire</h2>
+        <h2 className="text-5xl md:text-7xl italic font-serif mb-12 text-ivory">The Attire</h2>
         <div className="parchment-card p-12 md:p-20 rounded-sm">
           <h3 className="text-3xl font-serif italic text-merlot underline decoration-gold/50 underline-offset-8 mb-8">Black Tie Mandatory</h3>
           <p className="text-slate mb-12 italic text-lg leading-relaxed">
